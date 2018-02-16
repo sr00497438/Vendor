@@ -42,20 +42,20 @@ public class VehicleController {
 	@Autowired
 	private VehicleService service;
 	
-	/*@GetMapping("vec/{regNo}")
-	public ResponseEntity<Vehicle> getVec(@PathVariable("regNo") String regNo){
-		LOGGER.info("Getting Vehicle  details of id-" +tbl_vehicle_type_id );
+	@GetMapping("vec/{regNo}")
+	public ResponseEntity<Vehicle> getVecbyName(@PathVariable("regNo") String regNo){
+		//LOGGER.info("Getting Vehicle  details of id-" +tbl_vehicle_type_id );
 		
-		Vehicle Vec = service.gettbl_vehicle_type_idbyId(tbl_vehicle_type_id);
+		Vehicle Vec = service.getVecbyName(regNo);
 		
 		if(Vec== null)
 		{
-			throw new DriException("Vehicle not found with id: "+ tbl_vehicle_type_id);
+			throw new DriException("Vehicle not found with id: "+ regNo);
 		}
 		//return new ResponseEntity<Driver>(dri, HttpStatus.OK);
 		
 		return new ResponseEntity<Vehicle>(Vec, HttpStatus.OK);
-	}*/
+	}
 	
 	@GetMapping("vecs")
 	public ResponseEntity<List<Vehicle>> getAllVec(){

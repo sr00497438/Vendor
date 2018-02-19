@@ -66,12 +66,12 @@ public class VehicleController {
 		return new ResponseEntity<List<Vehicle>>(Vecs, HttpStatus.OK);
 	}
 	
-	@PostMapping("vec/{regNo}/{vId}")
+	@PostMapping("vec/{regNo}/{vId}/{vtId}")
 
-	public ResponseEntity<String> addVehicle(@PathVariable("regNo") String regNo, @PathVariable("vId") int vId,UriComponentsBuilder builder){
+	public ResponseEntity<String> addVehicle(@PathVariable("regNo") String regNo, @PathVariable("vId") int vId, @PathVariable("vtId") int vtId,UriComponentsBuilder builder){
 		LOGGER.info("Adding Vehicle  details-" +regNo );
 		
-		boolean flag = service.addVehicle(regNo,vId);
+		boolean flag = service.addVehicle(regNo,vId,vtId);
 		System.out.println(flag);
 		if (!flag) {
 			return	new ResponseEntity<String>("vehicle alredy exist", HttpStatus.CONFLICT);

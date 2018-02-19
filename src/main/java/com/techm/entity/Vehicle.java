@@ -29,8 +29,8 @@ public class Vehicle{
 	@Column(name="verification_status")
 	private String	verificationStatus;
 	
-	@Column(name="insurance_status")
-	private String	insuranceStatus;
+	/*@Column(name="insurance_status")
+	private String	insuranceStatus;*/
 	
 	
 	
@@ -52,7 +52,8 @@ public class Vehicle{
 	public void setDriverId(int driverId) {
 		this.driverId = driverId;
 	}
-
+	
+	
 	public int getVehicleTypeId() {
 		return vehicleTypeId;
 	}
@@ -69,14 +70,14 @@ public class Vehicle{
 		this.verificationStatus = verificationStatus;
 	}
 
-	public String getInsuranceStatus() {
+	/*public String getInsuranceStatus() {
 		return insuranceStatus;
 	}
 
 	public void setInsuranceStatus(String insuranceStatus) {
 		this.insuranceStatus = insuranceStatus;
 	}
-
+*/
 	public String getVehicleRegNo() {
 		return vehicleRegNo;
 	}

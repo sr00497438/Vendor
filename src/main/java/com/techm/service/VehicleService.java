@@ -50,7 +50,7 @@ public class VehicleService extends BaseService{
 			return true;
 		}
 	}
-	public synchronized boolean addVehicle(String regNo,int vId) {
+	public synchronized boolean addVehicle(String regNo,int vId, int vtId) {
 		Vehicle dbvec = vecRepository.findByVehicleRegNo(regNo); 
 		System.out.println("------------"+dbvec);
 		if (dbvec!=null) {
@@ -61,7 +61,7 @@ public class VehicleService extends BaseService{
 			vehicle.setVehicleRegNo(regNo);			
 		
 			vehicle.setDriverId(vId);
-			
+			vehicle.setVehicleTypeId(vtId);
 				
 			vecRepository.save(vehicle);
 			return true;

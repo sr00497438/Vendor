@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.techm.service.VehicleService;
+import com.techm.transport.vendor.service.VehicleService;
 
 
 	@RunWith(SpringRunner.class)

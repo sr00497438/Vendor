@@ -20,7 +20,7 @@ public class ApplicationConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(getApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.techm.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.techm.transport.vendor"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -1,13 +1,10 @@
 package com.techm.transport.vendor.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -34,13 +31,19 @@ public class Driver{
 	
 	
 	
-	public Driver()
-	{
-		  
+	
+
+	public Driver(int id, String driName, String license_number, String mobile_number, String address) {
+		super();
+		this.id = id;
+		this.driName = driName;
+		this.license_number = license_number;
+		this.mobile_number = mobile_number;
+		this.address = address;
 	}
-	
-	
-	
+
+
+
 
 	@ApiModelProperty(hidden  = true)
 	public int getId() {

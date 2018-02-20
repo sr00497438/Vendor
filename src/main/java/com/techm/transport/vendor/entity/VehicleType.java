@@ -7,12 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Proxy;
+import io.swagger.annotations.ApiModelProperty;
+
 
 @Entity
 @Table(name="table_vehicle_type")
 public class VehicleType{
 	
+	public VehicleType(Integer vId, String vecTypeName) {
+		super();
+		this.vId = vId;
+		this.vecTypeName = vecTypeName;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
@@ -22,7 +29,7 @@ public class VehicleType{
 	private String	vecTypeName;
 
 	
-
+	@ApiModelProperty(hidden  = true)
 	public Integer getvId() {
 		return vId;
 	}

@@ -3,26 +3,21 @@ package com.techm.transport.vendor.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.entity.Vehicle;
-import com.techm.transport.vendor.repository.DriRepository;
 import com.techm.transport.vendor.repository.VecRepository;
-//import com.techm.transport.entity.Organization;
-//import com.techm.transport.entity.SampleData;
-//import com.techm.repository.vecRepository;
+
 @Service
 public class VehicleService extends BaseService{
 
 	@Autowired
 	private VecRepository vecRepository;
 	
-	@Autowired
-	private DriRepository driRepository;
+//	@Autowired
+//	private DriRepository driRepository;
 
 	public List<Vehicle> getAllVehicles(){
 		List<Vehicle> list = new ArrayList<Vehicle>();

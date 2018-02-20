@@ -6,33 +6,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.techm.transport.vendor.entity.Driver;
+import com.techm.transport.vendor.entity.Vehicle;
 import com.techm.transport.vendor.entity.VehicleType;
-import com.techm.transport.vendor.service.DriverService;
 import com.techm.transport.vendor.service.VehicleTypeService;
 
-@Controller
-@RequestMapping("transport")
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+@RestController
+@RequestMapping("transport/1.0")
+@Api(description="VehicleType operations", tags= {"Vehicle Types"})
 public class VehicleTypeController {
 	
 	@Autowired
 	private VehicleTypeService service;
 	
+	
+	@ApiOperation(value = "${VehicleTypeController.getVecTypeByName}", response = Vehicle.class) 
+	@ApiResponses(value= {
+			@ApiResponse(code = 200, message = "Successfully get resource of given id"),
+			@ApiResponse(code = 401, message = "Not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "Not found resource you were trying to get."),
+			@ApiResponse(code = 500, message = "Internal server error")
+							}
+					)
+	
 	@GetMapping("vecType/{id}")
-	public ResponseEntity<VehicleType> getVecTypeByName(@PathVariable("id") Integer id){
+	public ResponseEntity<VehicleType> getVecTypeByName(@ApiParam(name = "id", value = "Id of Vehicle Type", required = true) @PathVariable("id") Integer id){
 		VehicleType vecType = service.getVecTypebyId(id);
 		return new ResponseEntity<VehicleType>(vecType, HttpStatus.OK);
 	}
+	
+	
+	@ApiOperation(value = "${VehicleTypeController.getAllVectype}", response = Vehicle.class) 
+	@ApiResponses(value= {
+			@ApiResponse(code = 200, message = "Successfully get resource of given id"),
+			@ApiResponse(code = 401, message = "Not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "Not found resource you were trying to get."),
+			@ApiResponse(code = 500, message = "Internal server error")
+							}
+					)
 	
 	@GetMapping("vecTypes")
 	public ResponseEntity<List<VehicleType>> getAllVectype(){
@@ -40,8 +66,19 @@ public class VehicleTypeController {
 		return new ResponseEntity<List<VehicleType>>(vecTypes, HttpStatus.OK);
 	}
 	
-	@PostMapping("vecType/{id}/{vecTypeName}")
-	public ResponseEntity<Void> addVehicleType(@PathVariable("vecTypeName") String vecType, UriComponentsBuilder builder){
+	
+	@ApiOperation(value = "${VehicleTypeController.addVehicleType}", response = Vehicle.class) 
+	@ApiResponses(value= {
+			@ApiResponse(code = 200, message = "Successfully get resource of given id"),
+			@ApiResponse(code = 401, message = "Not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "Not found resource you were trying to get."),
+			@ApiResponse(code = 500, message = "Internal server error")
+							}
+					)
+	
+	@PostMapping("vecType")
+	public ResponseEntity<Void> addVehicleType(@RequestBody VehicleType vecType, UriComponentsBuilder builder){
 		boolean flag = service.addVehicleType(vecType);
 		if (!flag) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);

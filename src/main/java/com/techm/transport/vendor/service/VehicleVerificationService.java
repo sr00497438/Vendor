@@ -7,9 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.entity.VehicleVerification;
-import com.techm.transport.vendor.repository.DriRepository;
 import com.techm.transport.vendor.repository.VecVerificationRepository;
 @Service
 public class VehicleVerificationService extends BaseService{

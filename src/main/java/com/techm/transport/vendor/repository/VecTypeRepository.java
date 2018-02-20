@@ -3,7 +3,6 @@ package com.techm.transport.vendor.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.entity.VehicleType;
 
 @Repository

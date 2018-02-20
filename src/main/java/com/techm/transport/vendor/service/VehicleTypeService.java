@@ -7,9 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.entity.VehicleType;
-import com.techm.transport.vendor.repository.DriRepository;
 import com.techm.transport.vendor.repository.VecTypeRepository;
 @Service
 public class VehicleTypeService extends BaseService{
@@ -27,14 +25,14 @@ public class VehicleTypeService extends BaseService{
 		return list;
 	}
 
-	public synchronized boolean addVehicleType(String vecType) {
-		VehicleType dbVecType = getVecTypebyName(vecType); 	
+	public synchronized boolean addVehicleType(VehicleType vecType) {
+		VehicleType dbVecType = vecTypeRepository.findByvId(vecType.getvId()); 	
 		if (dbVecType!=null) {
 			return false;
 		} else {
-			VehicleType type = new VehicleType();
-			type.setVecTypeName(vecType);
-			vecTypeRepository.save(type);
+			//VehicleType type = new VehicleType();
+			//type.setVecTypeName(vecType);
+			vecTypeRepository.save(vecType);
 			return true;
 		}
 	}

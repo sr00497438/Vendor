@@ -1,16 +1,9 @@
 package com.techm.transport.vendor.entity;
 
-import java.util.Optional;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="tbl_vehicle")
@@ -45,6 +38,16 @@ public class Vehicle{
 	}
 	
 	
+
+	public Vehicle(String vehicleRegNo, int driverId, int vehicleTypeId, String verificationStatus) {
+		super();
+		this.vehicleRegNo = vehicleRegNo;
+		this.driverId = driverId;
+		this.vehicleTypeId = vehicleTypeId;
+		this.verificationStatus = verificationStatus;
+	}
+
+
 	public int getDriverId() {
 		return driverId;
 	}

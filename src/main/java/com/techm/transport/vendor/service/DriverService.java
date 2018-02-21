@@ -1,6 +1,8 @@
 package com.techm.transport.vendor.service;
 
 import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,13 +14,13 @@ import com.techm.transport.vendor.repository.DriRepository;
 //import com.techm.repository.OrgRepository;
 @Service
 public class DriverService extends BaseService{
-
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private DriRepository driRepository;
 
 	public List<Driver> getAllDrivers(){
 		List<Driver> list = new ArrayList<Driver>();
-
+		LOGGER.info("Getting driver's list-" + list);
 		Iterator<Driver> itr = driRepository.findAll().iterator();
 		while(itr.hasNext()) {
 			list.add(itr.next()); 
@@ -26,15 +28,27 @@ public class DriverService extends BaseService{
 		return list;
 	}
 
-	public synchronized boolean addDriver(Driver dri) {
+	public synchronized Driver addDriver(Driver dri) {
 		Driver dbDri = driRepository.findByDriName(dri.getDriname()); 	
-		if (dbDri!=null) {
+		LOGGER.info("Getting driver details-" + dbDri);
+		/*if (dbDri!=null) {
 			return false;
 		} else {
 			driRepository.save(dri);
 			return true;
+		}*/
+		
+		
+		if(dbDri==null)
+		{
+			driRepository.save(dri);
+		return dri;
 		}
+		
+		return dri;
 	}
+	
+	
 	
 	public Driver getDribyName(String driName) {
 		Driver dri = driRepository.findByDriName(driName);

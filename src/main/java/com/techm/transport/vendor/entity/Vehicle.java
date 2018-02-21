@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name="tbl_vehicle")
 public class Vehicle{
@@ -21,7 +25,9 @@ public class Vehicle{
 	public int vehicleTypeId;
 	
 	@Column(name="verification_status")
+	@ColumnDefault("pending")  
 	private String	verificationStatus;
+	
 	
 	/*@Column(name="insurance_status")
 	private String	insuranceStatus;*/
@@ -65,13 +71,21 @@ public class Vehicle{
 	public void setVehicleTypeId(int vehicleTypeId) {
 		this.vehicleTypeId = vehicleTypeId;
 	}
-
+    
+	@ApiModelProperty(hidden  = true)
 	public String getVerificationStatus() {
 		return verificationStatus;
 	}
 
 	public void setVerificationStatus(String verificationStatus) {
+		
+		
+	/*if(verificationStatus.equals(null))
+		this.verificationStatus = "pending";
+	else*/
+		
 		this.verificationStatus = verificationStatus;
+		
 	}
 
 	/*public String getInsuranceStatus() {

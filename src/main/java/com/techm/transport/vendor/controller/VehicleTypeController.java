@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.entity.Vehicle;
 import com.techm.transport.vendor.entity.VehicleType;
 import com.techm.transport.vendor.service.VehicleTypeService;
@@ -78,15 +79,15 @@ public class VehicleTypeController {
 					)
 	
 	@PostMapping("vecType")
-	public ResponseEntity<Void> addVehicleType(@RequestBody VehicleType vecType, UriComponentsBuilder builder){
-		boolean flag = service.addVehicleType(vecType);
-		if (!flag) {
-			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+	public ResponseEntity<VehicleType> addVehicleType(@RequestBody VehicleType vecType, UriComponentsBuilder builder){
+		VehicleType dbVecType = service.addVehicleType(vecType);
+		if (vecType == null) {
+			return new ResponseEntity<VehicleType>(dbVecType,HttpStatus.CONFLICT);
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
-//		headers.setLocation(builder.path("/vecType/{id}").buildAndExpand(vecType.getId()).toUri());
-		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		headers.setLocation(builder.path("/vecType/{id}").buildAndExpand(vecType.getvId()).toUri());
+		return new ResponseEntity<VehicleType>(dbVecType,headers, HttpStatus.CREATED);
 	}
 	
 	/*@PutMapping("vecType")

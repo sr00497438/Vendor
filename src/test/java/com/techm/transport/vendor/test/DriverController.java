@@ -1,4 +1,4 @@
-package com.techm.transport.vendor.test;
+/*package com.techm.transport.vendor.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -93,7 +93,7 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 			JacksonTester.initFields(this,new ObjectMapper()); 
 		}
 		//@Test
-		/*public void getDriverByName() throws Exception
+		public void getDriverByName() throws Exception
 		{
 			
 			Mockito.when(dservice.getDribyId(1)).thenReturn(dri); 
@@ -109,7 +109,7 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
               assertThat(result.getStatus()).isEqualTo(HttpStatus.OK.value());
               
               //assertThat(result.getContentAsString().equals(null));
-		}*/
+		}
 		
 		
 		@Test
@@ -145,13 +145,14 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 		}
 			
 			
-		/*	//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Vehicle("KA-123456", 11, 10, "not-valid")).getJson())).andReturn().getResponse();
+			//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Vehicle("KA-123456", 11, 10, "not-valid")).getJson())).andReturn().getResponse();
 			
 			MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/dri").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Driver("user1", "APKSR1234", "9876546541", "Bang")).getJson())).andReturn().getResponse();
 			//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/dri/1/user2/ap123/123/vzm").contentType(MediaType.APPLICATION_JSON)).andReturn().getResponse();
 			System.out.println("post res is"+response.getErrorMessage());
-			assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value()); */
+			assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value()); 
 
 		
 		}
 
+*/

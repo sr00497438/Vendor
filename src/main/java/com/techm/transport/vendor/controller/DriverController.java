@@ -87,22 +87,34 @@ public class DriverController {
 							}
 					)
 	
-	@PostMapping("dri")
-	public ResponseEntity<String> addDriver(@RequestBody Driver dri){
+	@PostMapping("/dri")
+	public ResponseEntity<Driver> addDriver(@RequestBody Driver dri, UriComponentsBuilder builder){
 		LOGGER.info("Adding driver details" + dri);
 		
-		boolean flag = service.addDriver(dri);
-		if (!flag) {
+		Driver dbDri = service.addDriver(dri);
+		
+		if (dri == null) {
+			
+			LOGGER.info("inside flag" + dri);
 		//	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 			
-		return	new ResponseEntity<String>("driver alredy exist", HttpStatus.CONFLICT);
+		//return	new ResponseEntity<Driver>("driver alredy exist", HttpStatus.CONFLICT);
+			
+			
+			return	new ResponseEntity<Driver>(dbDri,HttpStatus.CONFLICT);
 			//throw new DriException("Driver alredy exist"+ dri.getDriname());
 		}
 		
+		
+		
 		HttpHeaders headers = new HttpHeaders();
-		//headers.setLocation(builder.path("/dri/{id}").buildAndExpand(dri.getId()).toUri());
+		headers.setLocation(builder.path("/dri/{id}").buildAndExpand(dri.getId()).toUri());
 		//headers.add("driverId", Integer.valueOf(dri.getId()).toString());
-		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+		
+		LOGGER.info("dbDri" + dbDri);
+		return new ResponseEntity<Driver>(dbDri,headers, HttpStatus.CREATED);
+		
+		
 	}
 	
 	/*@PutMapping("dri")

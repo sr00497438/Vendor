@@ -25,16 +25,27 @@ public class VehicleTypeService extends BaseService{
 		return list;
 	}
 
-	public synchronized boolean addVehicleType(VehicleType vecType) {
+	public synchronized VehicleType addVehicleType(VehicleType vecType) {
 		VehicleType dbVecType = vecTypeRepository.findByvId(vecType.getvId()); 	
-		if (dbVecType!=null) {
+		/*if (dbVecType!=null) {
 			return false;
 		} else {
 			//VehicleType type = new VehicleType();
 			//type.setVecTypeName(vecType);
 			vecTypeRepository.save(vecType);
 			return true;
+		}*/
+		
+		if (dbVecType==null) {
+			vecTypeRepository.save(vecType);
+			return vecType;
+		} 
+		else 
+		{
+			
+			return vecType;
 		}
+		
 	}
 	
 	public VehicleType getVecTypebyName(String vecTypeName) {

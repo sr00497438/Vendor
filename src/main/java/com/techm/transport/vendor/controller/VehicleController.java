@@ -104,18 +104,18 @@ public class VehicleController {
 	
 	@PostMapping("vec")
 
-	public ResponseEntity<String> addVehicle(@RequestBody Vehicle vec, UriComponentsBuilder builder){
-		LOGGER.info("Adding Vehicle  details-" +vec );
+	public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle vec, UriComponentsBuilder builder){
+		LOGGER.info("Adding Vehicle  details-"+vec.getVehicleRegNo()+vec.getVerificationStatus());
 		
-		boolean flag = service.addVehicle(vec);
-		System.out.println(flag);
-		if (!flag) {
-			return	new ResponseEntity<String>("vehicle alredy exist", HttpStatus.CONFLICT);
+		Vehicle dbVec = service.addVehicle(vec);
+		//System.out.println(flag);
+		if (vec == null) {
+			return	new ResponseEntity<Vehicle>(vec, HttpStatus.CONFLICT);
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(builder.path("/Vec/{id}").buildAndExpand(vec.getVehicleRegNo()).toUri());
-		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+		return new ResponseEntity<Vehicle>(dbVec,headers, HttpStatus.CREATED);
 	}
 	
 	@ApiOperation(value = "${VehicleController.updateVehicle}", response = Vehicle.class) 
@@ -128,10 +128,10 @@ public class VehicleController {
 							}
 					)
 	
-   @PutMapping("vec")
-	public ResponseEntity<Vehicle> updateVehicle(@RequestBody Vehicle Vec){
-		service.updateVehicle(Vec);
-		return new ResponseEntity<Vehicle>(Vec, HttpStatus.OK);
+   @PutMapping("vec/{regNo}/{status}")
+	public ResponseEntity<String> updateVehicle(@PathVariable("regNo") String regNo, @PathVariable("status") String verificationStatus){
+		service.updateVehicle(regNo, verificationStatus);
+		return new ResponseEntity<String>("updated", HttpStatus.OK);
 	}
 	
 	/*@DeleteMapping("vec/{id}")

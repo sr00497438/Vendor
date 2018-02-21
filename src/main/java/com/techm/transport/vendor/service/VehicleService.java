@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import com.techm.transport.vendor.repository.VecRepository;
 
 @Service
 public class VehicleService extends BaseService{
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private VecRepository vecRepository;
@@ -21,7 +24,7 @@ public class VehicleService extends BaseService{
 
 	public List<Vehicle> getAllVehicles(){
 		List<Vehicle> list = new ArrayList<Vehicle>();
-
+		LOGGER.info("Getting vehicle's list-" + list);
 		Iterator<Vehicle> itr = vecRepository.findAll().iterator();
 		while(itr.hasNext()) {
 			list.add(itr.next()); 
@@ -29,19 +32,31 @@ public class VehicleService extends BaseService{
 		return list;
 	}
 
-	public synchronized boolean addVehicle(Vehicle Vec) {
+	public synchronized Vehicle addVehicle(Vehicle Vec) {
 		//long id = Vec.gettbl_vehicle_type_id();
 		//System.out.println("------------"+id);
 		//Vehicle dbvec = vecRepository.findByVehicleTypeId(id); 
 		System.out.println("------------");
 		Vehicle dbvec = vecRepository.findByVehicleTypeId(Vec.getVehicleTypeId()); 
+		LOGGER.info("Getting Vehicle details-" + dbvec);
 		System.out.println("------------"+dbvec);
-		if (dbvec!=null) {
+		/*if (dbvec!=null) {
 			return false;
 		} else {
 			vecRepository.save(Vec);
 			return true;
-		}
+		}*/
+		
+		if (dbvec == null) {
+			
+			LOGGER.info("Getting Vehicle default value-" + Vec.getVerificationStatus());  
+			vecRepository.save(Vec);
+			return Vec;
+		} 
+		else {
+			return Vec;		
+			}
+		
 	}
 	public synchronized boolean addVehicle(String regNo,int vId, int vtId) {
 		Vehicle dbvec = vecRepository.findByVehicleRegNo(regNo); 
@@ -87,7 +102,12 @@ public class VehicleService extends BaseService{
 		return vec;
 	}*/
 	
-	public void updateVehicle(Vehicle vec) {
+	public void updateVehicle(String regNo, String verificationStatus) {
+		
+		Vehicle vec=vecRepository.findByVehicleRegNo(regNo);
+		
+		vec.setVerificationStatus(verificationStatus);
+		vec.setVehicleRegNo(regNo);
 		vecRepository.save(vec);
 	}
 	

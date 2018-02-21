@@ -31,7 +31,11 @@ public class Driver{
 	
 	
 	
-	
+	public Driver()
+	{
+		
+		
+	}
 
 	public Driver(int id, String driName, String license_number, String mobile_number, String address) {
 		super();

@@ -1,6 +1,7 @@
 package com.techm.transport.vendor.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -23,6 +24,7 @@ import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.MockReset;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -81,7 +83,7 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 		
 		private JacksonTester<Driver> jsonSuperHero;
 		
-		Driver dri = new Driver(1,"user1", "APKSR1234", "9876546541", "Bang");
+		Driver dri = new Driver(1, "user1", "APKSR1234", "9876546541", "Bang");
 		
 		
 		@Before
@@ -90,8 +92,8 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 			
 			JacksonTester.initFields(this,new ObjectMapper()); 
 		}
-		@Test
-		public void getDriverByName() throws Exception
+		//@Test
+		/*public void getDriverByName() throws Exception
 		{
 			
 			Mockito.when(dservice.getDribyId(1)).thenReturn(dri); 
@@ -107,20 +109,49 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
               assertThat(result.getStatus()).isEqualTo(HttpStatus.OK.value());
               
               //assertThat(result.getContentAsString().equals(null));
-		}
+		}*/
 		
 		
-		/*@Test
+		@Test
 		public void getDriverByNamePost() throws Exception
 		{
 		
-			//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Vehicle("KA-123456", 11, 10, "not-valid")).getJson())).andReturn().getResponse();
+			String exampleCourseJson = "{\"id\":\"1\",\"driName\":\"sample1\",\"license_number\":\"qwert2123\",\"mobile_number\":\"789\",\"address\":\"Vskp\"}";
+
 			
 			
-			MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec/xyz/89/12").contentType(MediaType.APPLICATION_JSON)).andReturn().getResponse();
-			System.out.println("post res is"+response.getContentAsString());
-			assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value()); 
+			Driver dri = new Driver(1, "user1", "APKSR1234", "9876546541", "Bang");
+
+			
+			Mockito.when(dservice.addDriver(Mockito.any(Driver.class))).thenReturn(true);
+
+			
+			RequestBuilder requestBuilder = MockMvcRequestBuilders
+					.post("/transport/1.0/dri")
+					.accept(MediaType.APPLICATION_JSON).content(exampleCourseJson)
+					.contentType(MediaType.APPLICATION_JSON);
+
+			MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+			MockHttpServletResponse response = result.getResponse();
+
+			
+			System.out.println("response"+result.getResponse().getContentAsString());
+			assertEquals(HttpStatus.CREATED.value(), response.getStatus());
+
+			//assertEquals("http://localhost/transport/1.0/dri//1",
+					//response.getHeader(HttpHeaders.LOCATION));
+
+		}
+			
+			
+		/*	//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Vehicle("KA-123456", 11, 10, "not-valid")).getJson())).andReturn().getResponse();
+			
+			MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/dri").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Driver("user1", "APKSR1234", "9876546541", "Bang")).getJson())).andReturn().getResponse();
+			//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/dri/1/user2/ap123/123/vzm").contentType(MediaType.APPLICATION_JSON)).andReturn().getResponse();
+			System.out.println("post res is"+response.getErrorMessage());
+			assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value()); */
 
 		
-		}*/
-}
+		}
+

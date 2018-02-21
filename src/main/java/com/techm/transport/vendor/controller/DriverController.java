@@ -88,7 +88,7 @@ public class DriverController {
 					)
 	
 	@PostMapping("dri")
-	public ResponseEntity<String> addDriver(@RequestBody Driver dri, UriComponentsBuilder builder){
+	public ResponseEntity<String> addDriver(@RequestBody Driver dri){
 		LOGGER.info("Adding driver details" + dri);
 		
 		boolean flag = service.addDriver(dri);
@@ -100,7 +100,7 @@ public class DriverController {
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/dri/{id}").buildAndExpand(dri.getId()).toUri());
+		//headers.setLocation(builder.path("/dri/{id}").buildAndExpand(dri.getId()).toUri());
 		//headers.add("driverId", Integer.valueOf(dri.getId()).toString());
 		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}

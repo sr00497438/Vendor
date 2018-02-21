@@ -8,6 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="tbl_vehicle")
 public class Vehicle{
+	//public String	verificationStatus = "Pending";
 	
 	@Id
 	@Column(name="vehicle_registration_number")

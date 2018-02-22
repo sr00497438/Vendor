@@ -9,8 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.entity.Vehicle;
+import com.techm.transport.vendor.entity.VehicleType;
+import com.techm.transport.vendor.repository.DriRepository;
 import com.techm.transport.vendor.repository.VecRepository;
+import com.techm.transport.vendor.repository.VecTypeRepository;
+
+import com.techm.transport.vendor.entity.Sample;
 
 @Service
 public class VehicleService extends BaseService{
@@ -18,7 +24,10 @@ public class VehicleService extends BaseService{
 
 	@Autowired
 	private VecRepository vecRepository;
-	
+	@Autowired
+	private DriRepository driRepository;
+	@Autowired
+	private VecTypeRepository vecTypeRepository;
 //	@Autowired
 //	private DriRepository driRepository;
 
@@ -77,9 +86,36 @@ public class VehicleService extends BaseService{
 	}
 	
 	
-	public Vehicle getVecbyName(String regNo) {
+	public Sample getVecbyName(String regNo) {
 		Vehicle vec = vecRepository.findByVehicleRegNo(regNo);
-		return vec;
+		
+		//Sample sam = new Sample();
+		
+		String regNo1 = vec.getVehicleRegNo();
+		
+		String verificationStatus = vec.getVerificationStatus();
+		
+		
+		
+		Driver dri = driRepository.findById(vec.getDriverId());
+		VehicleType vecType = vecTypeRepository.findByvId(vec.getVehicleTypeId());
+		
+		String driverName = dri.getDriname();
+		String vehicleType = vecType.getVecTypeName();
+		
+		
+		Sample sam = new Sample(regNo1, driverName, vehicleType, verificationStatus);
+		
+	/*	sam.setVehicleRegNo(regNo1);
+		
+		sam.setDriverName(driverName);*/
+		
+		//sam.setVehicleRegNo(vec.getVehicleRegNo());	
+		//sam.setVerificationStatus(vec.getVerificationStatus());
+		
+		//sam.setVehicleRegNo(regNo);
+		
+		return sam;
 	}
 	
 	//public synchronized boolean addVehicle(int tbl_vehicle_type_id) {

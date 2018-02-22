@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.techm.transport.vendor.entity.Driver;
+import com.techm.transport.vendor.entity.Sample;
 import com.techm.transport.vendor.entity.Vehicle;
 import com.techm.transport.vendor.exception.DriException;
 import com.techm.transport.vendor.service.VehicleService;
@@ -56,13 +57,13 @@ public class VehicleController {
 					)
 	
 	@GetMapping("vec/{regNo}")
-	public ResponseEntity<Vehicle> getVecbyName(@ApiParam(name = "regNo", value = "RegNo of Vehicle", required = true) @PathVariable("regNo") String regNo){
+	public ResponseEntity<Sample> getVecbyName(@ApiParam(name = "regNo", value = "RegNo of Vehicle", required = true) @PathVariable("regNo") String regNo){
 		//LOGGER.info("Getting Vehicle  details of id-" +tbl_vehicle_type_id );
 		
-		Vehicle Vec = service.getVecbyName(regNo);
+		Sample sam = service.getVecbyName(regNo);
 		
 		
-		if(Vec== null)
+		if(sam== null)
 		{
 			
 			
@@ -70,8 +71,11 @@ public class VehicleController {
 		}
 		//return new ResponseEntity<Driver>(dri, HttpStatus.OK);
 		
-		return new ResponseEntity<Vehicle>(Vec, HttpStatus.OK);
+		//return new ResponseEntity<Sample>(sam, HttpStatus.OK);
+		return new ResponseEntity<Sample>(sam, HttpStatus.OK);	
+	
 	}
+	
 	
 	@ApiOperation(value = "${VehicleController.getAllVec}", response = Vehicle.class) 
 	@ApiResponses(value= {

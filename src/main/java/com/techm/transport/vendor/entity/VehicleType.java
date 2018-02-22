@@ -14,6 +14,12 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name="table_vehicle_type")
 public class VehicleType{
 	
+	public VehicleType()
+	{
+	}
+	
+	
+	
 	public VehicleType(Integer vId, String vecTypeName) {
 		super();
 		this.vId = vId;

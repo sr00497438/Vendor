@@ -1,4 +1,4 @@
-package com.techm.transport.vendor.test;
+/*package com.techm.transport.vendor.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -109,7 +109,7 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 		}
 		
 		
-		/*@Test
+		@Test
 		public void getVehicleByNamePost() throws Exception
 		{
 		
@@ -121,5 +121,6 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 			assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value()); 
 
 		
-		}*/
+		}
 }
+*/

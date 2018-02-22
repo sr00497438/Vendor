@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.techm.transport.vendor.entity.VehicleVerification;
 import com.techm.transport.vendor.service.VehicleVerificationService;
 
-@RequestMapping("transport")
+@RequestMapping("1.0")
 public class VehicleVerificationController {
 	
 	@Autowired
@@ -42,7 +42,7 @@ public class VehicleVerificationController {
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/vecVerification/{id}").buildAndExpand(vecVerification.getId()).toUri());
+		headers.setLocation(builder.path("/1.0/vecVerification/{id}").buildAndExpand(vecVerification.getId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 	

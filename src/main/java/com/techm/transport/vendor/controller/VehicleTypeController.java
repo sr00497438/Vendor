@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("transport/1.0")
+@RequestMapping("1.0")
 @Api(description="VehicleType operations", tags= {"Vehicle Types"})
 public class VehicleTypeController {
 	
@@ -86,7 +86,7 @@ public class VehicleTypeController {
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/vecType/{id}").buildAndExpand(vecType.getvId()).toUri());
+		headers.setLocation(builder.path("/1.0/vecType/{id}").buildAndExpand(vecType.getvId()).toUri());
 		return new ResponseEntity<VehicleType>(dbVecType,headers, HttpStatus.CREATED);
 	}
 	

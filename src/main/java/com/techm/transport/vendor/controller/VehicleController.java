@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("transport/1.0")
+@RequestMapping("1.0")
 @Api(description="Vehicle operations", tags= {"Vehicles"})
 public class VehicleController {
 	
@@ -113,12 +113,12 @@ public class VehicleController {
 		
 		Vehicle dbVec = service.addVehicle(vec);
 		//System.out.println(flag);
-		if (vec == null) {
+		if (dbVec == null) {
 			return	new ResponseEntity<Vehicle>(vec, HttpStatus.CONFLICT);
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/Vec/{id}").buildAndExpand(vec.getVehicleRegNo()).toUri());
+		headers.setLocation(builder.path("/1.0/vec/{id}").buildAndExpand(vec.getVehicleRegNo()).toUri());
 		return new ResponseEntity<Vehicle>(dbVec,headers, HttpStatus.CREATED);
 	}
 	

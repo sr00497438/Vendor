@@ -3,4 +3,3 @@ applications:
 - name: vendorservice
   buildpack: https://github.com/cloudfoundry/java-buildpack.git
   host: vendorserviceone
-  path: target/VendorService-0.0.1-SNAPSHOT.jar

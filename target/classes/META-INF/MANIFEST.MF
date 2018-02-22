@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: vendorservice
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: KC00444387
+Built-By: NM00345548
 Implementation-Vendor-Id: com.techm
-Build-Jdk: 1.8.0_91
+Build-Jdk: 1.8.0_141
 Implementation-URL: http://projects.spring.io/spring-boot/VendorServic
  e/
 Created-By: Maven Integration for Eclipse

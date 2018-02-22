@@ -33,12 +33,6 @@ public class Vehicle{
 	private String	insuranceStatus;*/
 	
 	
-	
-	
-	
-	
-	
-	
 	public Vehicle()
 	{
 		   
@@ -72,7 +66,7 @@ public class Vehicle{
 		this.vehicleTypeId = vehicleTypeId;
 	}
     
-	@ApiModelProperty(hidden  = true)
+	//@ApiModelProperty(hidden  = true)
 	public String getVerificationStatus() {
 		return verificationStatus;
 	}
@@ -105,6 +99,9 @@ public class Vehicle{
 	}
 
 
-	
+	@Override
+	public String toString() {
+		return "vehicleRegNo, driverId, vehicleTypeId, verificationStatus :"+vehicleRegNo+ driverId+ vehicleTypeId+ verificationStatus;
+	}
 	
 }

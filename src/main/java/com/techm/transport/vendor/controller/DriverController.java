@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("transport/1.0")
+@RequestMapping("1.0")
 @Api(description="Driver operations", tags= {"Drivers"})
 public class DriverController {
 	
@@ -108,7 +108,7 @@ public class DriverController {
 		
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/dri/{id}").buildAndExpand(dri.getId()).toUri());
+		headers.setLocation(builder.path("/1.0/dri/{id}").buildAndExpand(dri.getId()).toUri());
 		//headers.add("driverId", Integer.valueOf(dri.getId()).toString());
 		
 		LOGGER.info("dbDri" + dbDri);

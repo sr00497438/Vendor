@@ -87,8 +87,10 @@ public class DriverController {
 							}
 					)
 	
-	@PostMapping("/dri")
+	@PostMapping("driver")
 	public ResponseEntity<Driver> addDriver(@RequestBody Driver dri, UriComponentsBuilder builder){
+		System.out.println("Adding driver details..." + dri);
+		
 		LOGGER.info("Adding driver details" + dri);
 		
 		Driver dbDri = service.addDriver(dri);

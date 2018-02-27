@@ -80,6 +80,8 @@ public class VehicleTypeController {
 	
 	@PostMapping("vecType")
 	public ResponseEntity<VehicleType> addVehicleType(@RequestBody VehicleType vecType, UriComponentsBuilder builder){
+		
+		System.out.println("hi in vec type....");
 		VehicleType dbVecType = service.addVehicleType(vecType);
 		if (vecType == null) {
 			return new ResponseEntity<VehicleType>(dbVecType,HttpStatus.CONFLICT);

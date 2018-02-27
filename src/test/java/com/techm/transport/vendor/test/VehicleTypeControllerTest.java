@@ -50,9 +50,9 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 
 	//@SuppressWarnings("deprecation")
 	@RunWith(SpringRunner.class)
-	@WebMvcTest(value=com.techm.transport.vendor.test.VehicleTypeController.class)	
+	@WebMvcTest(value=com.techm.transport.vendor.test.VehicleTypeControllerTest.class)	
 	@ContextConfiguration(classes={VendorApplication.class})
-	public class VehicleTypeController {
+	public class VehicleTypeControllerTest {
 		
 		
 
@@ -63,7 +63,7 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 	    
 	    
 		@MockBean
-	    private VehicleTypeController vcontroller;
+	    private VehicleTypeControllerTest vcontroller;
 		
 		
 		@MockBean		
@@ -97,12 +97,8 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 			
 			Mockito.when(vtservice.getVecTypebyId(Mockito.anyInt())).thenReturn(veht); 
 			
-	
-			//RequestBuilder rb=MockMvcRequestBuilders.get("/transport/1.0/vec/KA-123").accept(MediaType.APPLICATION_JSON);
-					
-				//	MockMvcRequestBuilders.get("/students/Student1/courses/Course1").accept(MediaType.APPLICATION_JSON); 
 			
-              MockHttpServletResponse result= mockMvc.perform(get("/transport/1.0/vecType/1").accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();	
+              MockHttpServletResponse result= mockMvc.perform(get("/1.0/vecType/1").accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();	
               
               System.out.println("result is"+result.getContentAsString());
               assertThat(result.getStatus()).isEqualTo(HttpStatus.OK.value());
@@ -111,17 +107,4 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 		}
 		
 		
-		/*@Test
-		public void getVehicleByNamePost() throws Exception
-		{
-		
-			//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Vehicle("KA-123456", 11, 10, "not-valid")).getJson())).andReturn().getResponse();
-			
-			
-			MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec/xyz/89/12").contentType(MediaType.APPLICATION_JSON)).andReturn().getResponse();
-			System.out.println("post res is"+response.getContentAsString());
-			assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value()); 
-
-		
-		}*/
 }

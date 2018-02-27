@@ -1,6 +1,7 @@
-/*package com.techm.transport.vendor.test;
+package com.techm.transport.vendor.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -40,6 +41,8 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techm.transport.vendor.VendorApplication;
 import com.techm.transport.vendor.controller.DriverController;
+import com.techm.transport.vendor.controller.VehicleController;
+import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.entity.Vehicle;
 import com.techm.transport.vendor.service.DriverService;
 import com.techm.transport.vendor.service.VehicleService;
@@ -49,9 +52,9 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 
 	//@SuppressWarnings("deprecation")
 	@RunWith(SpringRunner.class)
-	@WebMvcTest(value=com.techm.transport.vendor.test.VehicleController.class)	
+	@WebMvcTest(value=com.techm.transport.vendor.test.VehicleControllerTestPost.class)	
 	@ContextConfiguration(classes={VendorApplication.class})
-	public class VehicleController {
+	public class VehicleControllerTestPost {
 		
 		
 
@@ -80,7 +83,7 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 		
 		private JacksonTester<Vehicle> jsonSuperHero;
 		
-		Vehicle veh=new Vehicle("KA-123456", 11, 10, "not-valid");
+		//Vehicle veh=new Vehicle("KA-123456", 11, 10, "not-valid");
 		
 		
 		@Before
@@ -89,38 +92,40 @@ import com.techm.transport.vendor.service.VehicleVerificationService;
 			
 			JacksonTester.initFields(this,new ObjectMapper()); 
 		}
-		@Test
-		public void getVehicleByName() throws Exception
-		{
-			
-			Mockito.when(service.getVecbyName(Mockito.anyString())).thenReturn(veh); 
-			
-	
-			//RequestBuilder rb=MockMvcRequestBuilders.get("/transport/1.0/vec/KA-123").accept(MediaType.APPLICATION_JSON);
-					
-				//	MockMvcRequestBuilders.get("/students/Student1/courses/Course1").accept(MediaType.APPLICATION_JSON); 
-			
-              MockHttpServletResponse result= mockMvc.perform(get("/transport/1.0/vec/KA-1234").accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();	
-              
-              System.out.println("result is"+result.getContentAsString());
-              assertThat(result.getStatus()).isEqualTo(HttpStatus.OK.value());
-              
-              assertThat(result.getContentAsString().equals(null));
-		}
-		
 		
 		@Test
-		public void getVehicleByNamePost() throws Exception
+		public void getVehiclePost() throws Exception
 		{
 		
-			//MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec").contentType(MediaType.APPLICATION_JSON).content(jsonSuperHero.write(new Vehicle("KA-123456", 11, 10, "not-valid")).getJson())).andReturn().getResponse();
-			
-			
-			MockHttpServletResponse response = mockMvc.perform(post("/transport/1.0/vec/xyz/89/12").contentType(MediaType.APPLICATION_JSON)).andReturn().getResponse();
-			System.out.println("post res is"+response.getContentAsString());
-			assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value()); 
+			String exampleCourseJson = "{\"vehicleRegNo\":\"KA-123456\",\"driverId\":\"11\",\"vehicleTypeId\":\"10\",\"verificationStatus\":\"pending\"}";
 
-		
+			
+			
+			Vehicle vec = new Vehicle("KA-123456", 11, 10, "pending");
+
+			
+			Mockito.when(service.addVehicle(Mockito.any(Vehicle.class))).thenReturn(vec);
+
+			
+			RequestBuilder requestBuilder = MockMvcRequestBuilders
+					.post("/1.0/vec")
+					.accept(MediaType.APPLICATION_JSON).content(exampleCourseJson)
+					.contentType(MediaType.APPLICATION_JSON);
+
+			MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+			MockHttpServletResponse response = result.getResponse();
+
+			
+			System.out.println("response"+result.getResponse().getContentAsString());
+			
+			System.out.println("sttaus"+response.getStatus());
+			
+			assertEquals(HttpStatus.CREATED.value(), response.getStatus());
+
+			
+
 		}
+		
+		
 }
-*/

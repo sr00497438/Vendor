@@ -1,5 +1,8 @@
 ---
 applications:
-- name: vendorservice
+- name: Vendor-Service
+  memory: 1024M
   buildpack: https://github.com/cloudfoundry/java-buildpack.git
-  host: vendorserviceone
+  services:
+  - vendorserviceDB
+  - CentralServiceRegistry

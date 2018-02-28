@@ -1,8 +1,9 @@
 ---
 applications:
-- name: Vendor-Service
+- name: VendorServiceT
   memory: 1024M
   buildpack: https://github.com/cloudfoundry/java-buildpack.git
   services:
-  - vendorserviceDB
-  - CentralServiceRegistry
+  - Vendor-Service-DB
+  - ServiceRegistry-Transport
+  - ConfigServer-Transport

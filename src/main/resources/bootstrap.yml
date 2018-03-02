@@ -29,6 +29,8 @@ security:
   user:
     name: user
     password: test
-#
-#management.security.enabled=false
+
+management:
+  security:
+    enabled: false
     

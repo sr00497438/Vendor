@@ -1,4 +1,4 @@
-package com.techm.transport.vendor.config;
+/*package com.techm.transport.vendor.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,4 +19,4 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     } 
-} 
+} */

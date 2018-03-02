@@ -1,6 +1,5 @@
 com\techm\transport\vendor\service\DriverService.class
 com\techm\transport\vendor\controller\VehicleVerificationController.class
-com\techm\transport\vendor\config\AppConfig.class
 com\techm\transport\vendor\VendorApplication.class
 com\techm\transport\vendor\exception\CustomizedExceptionHandler.class
 com\techm\transport\vendor\controller\VehicleTypeController.class
@@ -9,10 +8,8 @@ com\techm\transport\vendor\repository\VecTypeRepository.class
 com\techm\transport\vendor\controller\VehicleController.class
 com\techm\transport\vendor\entity\Sample.class
 com\techm\transport\vendor\service\IBaseService.class
-com\techm\transport\vendor\SimpleCORSFilter.class
 com\techm\transport\vendor\entity\Driver.class
 com\techm\transport\vendor\repository\VecRepository.class
-com\techm\transport\vendor\config\WebAppInitializer.class
 com\techm\transport\vendor\entity\BaseEntity.class
 com\techm\transport\vendor\service\VehicleVerificationService.class
 com\techm\transport\vendor\MessageRestController.class

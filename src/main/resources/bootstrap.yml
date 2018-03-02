@@ -1,5 +1,34 @@
+#spring.datasource.url=jdbc:mysql://localhost:3306/transport
+#spring.datasource.username=root
+#spring.datasource.password=deepu
 spring:
   application:
     name: VendorServiceT
   profiles:
     active: test
+
+#  datasource:
+#    #url: mysql://b589eee575a399:d525741d@us-cdbr-iron-east-05.cleardb.net:3306/ad_0d26c5d5a4eef01?reconnect=true
+#    url: jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/ad_0d26c5d5a4eef01?user=b589eee575a399&password=d525741d
+#    username: b589eee575a399
+#    password: d525741d
+#    
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    show-sql: true
+#    database: mysql
+#      
+#
+#
+#
+security:
+  basic:
+    enabled: false
+  ignored: /**
+  user:
+    name: user
+    password: test
+#
+#management.security.enabled=false
+    

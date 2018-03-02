@@ -9,19 +9,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
 public class VendorApplication {  
 	public static void main(String[] args) {
 		SpringApplication.run(VendorApplication.class, args);
-    } 
+    }
 	
-	@Bean
+/*	@Bean
 	public SimpleCORSFilter corsFilter(){
 		return new SimpleCORSFilter();
-	}
+	}*/
 }
 
 @RefreshScope

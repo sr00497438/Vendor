@@ -17,7 +17,8 @@ import com.techm.transport.vendor.repository.VecRepository;
 import com.techm.transport.vendor.repository.VecTypeRepository;
 
 import com.techm.transport.vendor.entity.Sample;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin
 @Service
 public class VehicleService extends BaseService{
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.techm.transport.vendor.entity.Driver;
 import com.techm.transport.vendor.repository.DriRepository;
 //import com.techm.repository.OrgRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin
 @Service
 public class DriverService extends BaseService{
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());

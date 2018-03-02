@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.techm.transport.vendor.entity.VehicleVerification;
 import com.techm.transport.vendor.repository.VecVerificationRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin
 @Service
 public class VehicleVerificationService extends BaseService{
 

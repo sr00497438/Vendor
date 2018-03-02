@@ -18,10 +18,10 @@ public class VendorApplication {
 		SpringApplication.run(VendorApplication.class, args);
     }
 	
-/*	@Bean
+	@Bean
 	public SimpleCORSFilter corsFilter(){
 		return new SimpleCORSFilter();
-	}*/
+	}
 }
 
 @CrossOrigin

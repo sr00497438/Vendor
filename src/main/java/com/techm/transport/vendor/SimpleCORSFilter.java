@@ -1,4 +1,4 @@
-/*package com.techm.transport.vendor;
+package com.techm.transport.vendor;
 
 import java.io.IOException;
 
@@ -35,4 +35,4 @@ public void destroy() {
 	// TODO Auto-generated method stub
 	
 }
-}*/
+}

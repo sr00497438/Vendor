@@ -17,7 +17,7 @@ import com.techm.transport.vendor.entity.VehicleVerification;
 import com.techm.transport.vendor.service.VehicleVerificationService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("1.0")
 public class VehicleVerificationController {
 	

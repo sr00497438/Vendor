@@ -15,7 +15,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.techm.transport.vendor.entity.VehicleVerification;
 import com.techm.transport.vendor.service.VehicleVerificationService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RequestMapping("1.0")
 public class VehicleVerificationController {
 	
